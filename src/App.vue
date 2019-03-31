@@ -13,14 +13,10 @@ export default {
 
   mounted() {
     if (localStorage.token) {
-        // eslint-disable-next-line
-        console.log("loading ", localStorage.token)
-        this.$store.commit('setToken',localStorage.token)
+        this.$store.dispatch('token_login',localStorage.token)
     }
 
     this.$store.watch(()=>this.$store.getters.getToken, (new_token) => {
-        // eslint-disable-next-line
-        console.log("saving ", new_token);
         localStorage.token = new_token;
     })
   },

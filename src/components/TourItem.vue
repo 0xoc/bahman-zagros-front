@@ -4,16 +4,16 @@
             <div class="container">
                 <div class="row tour_item">
                     <div class="col-lg-10 tour_item_description">
-                        <h1 class="tour_item_title" >{{ tour_title }}</h1>
+                        <h1 class="tour_item_title" >{{ item_info.title }}</h1>
                         <p class="tour_item_content">
-                            {{ tour_description }}
+                            {{ item_info.description }}
                         </p>
-                        <span v-if="tour_group_view" class="tour_item_view" >
+                        <span v-if="!detail_view" class="tour_item_view" >
                             مشاهده
                         </span>
                     </div>
                     <div class="col-lg-2 tour_item_image_container">
-                        <img :src="tour_image" class="tour_item_image" />
+                        <img :src="item_info.image" class="tour_item_image" />
                     </div>
                 </div>
             </div>
@@ -24,15 +24,13 @@
 <script>
 export default {
     name: "TourItem",
-    props: [
-        'TourItem'
-    ],
+    props: {
+        'item_info': Object,
+        'detail_view': Boolean
+    },
     data: function()  {
         return {
-            tour_title: self.TourItem.title,
-            tour_description:self.TourItem.description,
-            tour_group_view: true,
-            tour_image: self.TourItem.image
+            
         }
     },
     computed: {

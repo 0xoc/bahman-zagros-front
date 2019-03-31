@@ -8,8 +8,9 @@
             </div>
             
             <div class="row">
-                <TourItem v-for="tour_gp in tour_groups" :key=tour_gp.pk :TourItem="tour_gp">
-
+                
+                <TourItem v-for="tour_gp in tour_groups" :key=tour_gp.pk :item_info="tour_gp" >
+                    
                 </TourItem>
             </div>
         </div>
@@ -23,6 +24,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import TourItem from './TourItem'
 import UserMeta from './UserMeta'
 import api from '../api/bahman_zagros'
@@ -33,18 +35,24 @@ export default {
         TourItem,
         UserMeta
     },
+    data: function () {
+        return {
+            tours: self.tour_gps
+        }
+    },
     methods: {
         redirectToLogin: function() {
             this.$router.push('login')
         },
-        ...mapGetters(['isLogedIn', getToken]),
+        ...mapGetters(['isLogedIn']),
     },
     computed: {
         tour_groups: function () {
-            return api.get_tour_gps(self.getToken).then(response => {
-                return response
-            })
+            return this.$store.getters.tour_groups
         }
+    },
+    mounted: function() {
+        this.$store.dispatch('updateTourGroups')
     }
 }
 </script>

@@ -3,7 +3,8 @@
         <div class="row">
         <div  class="col-lg-4 col-md-6 cols-sm-12">
             <div v-if="isLogedIn" class="top_meta_info user_info">
-                علی پرویزی
+                
+                {{ full_name }}
                 <span @click="logout" class="io_btn">
                     خروج
                 </span>
@@ -34,6 +35,11 @@ export default {
         redirectToLogin: function() {
             this.$router.push('login')
         },
+    },
+    computed:{
+        full_name: function () {
+            return this.$store.getters.full_name
+        }
     }
 }
 </script>
