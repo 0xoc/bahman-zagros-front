@@ -157,16 +157,17 @@ export default {
     @media only screen and (max-width: 992px) {
         .tour_item_description{
             order:2;
-            padding-top:100px; 
+            padding-top:50px; 
         }
         .tour_item_image_container {
             order: 1;
             text-align: center;
+            z-index: 10;
         }
         .tour_item_image {
             margin: 0px;
-            max-width: 60%;
-            margin-bottom: -100px;
+            max-width: 80%;
+            margin-bottom: -50px;
         }
 
 
