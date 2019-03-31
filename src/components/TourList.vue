@@ -44,7 +44,6 @@
         </div>
         </div>
         <div v-else>
-            fuckerrrs
             {{ redirectToLogin() }}
         </div>
     </div>

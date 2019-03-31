@@ -57,10 +57,11 @@ export default {
     background-position: center;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
 }
 
 #login-wrapper {
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     z-index: -1;
