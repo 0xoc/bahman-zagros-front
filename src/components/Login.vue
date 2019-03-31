@@ -57,7 +57,7 @@ export default {
     background-position: center;
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
+    position: fixed;
 }
 
 #login-wrapper {
@@ -139,9 +139,7 @@ export default {
 
 
 @media only screen and (max-width: 768px) {
-    body {
-        overflow-x: hidden;
-    }
+
 
     #bottom-logo {
         top: 700px;
