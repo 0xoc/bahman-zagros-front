@@ -3,14 +3,16 @@ import api from '../../api/bahman_zagros'
 const state = {
     token: "",
     user_full_name: "",
-    tour_groups : []
+    tour_groups : [],
+    
 }
 
 const getters = {
     isLogedIn: state => !!state.token,
     getToken: state => state.token,
     tour_groups: state => state.tour_groups,
-    full_name: state => state.user_full_name
+    full_name: state => state.user_full_name,
+    
 }
 
 const actions = {
@@ -39,11 +41,11 @@ const actions = {
 
     updateUserFullName: (context) => {
         if (context.getters.isLogedIn){
-        api.get_user_detail(context.getters.getToken).then(response => {
-            let full_name = response.user.first_name + " " + response.user.last_name
-            context.commit("setUserFullName", full_name)
-        }).catch(error => console.log(error))
-    }
+            api.get_user_detail(context.getters.getToken).then(response => {
+                let full_name = response.user.first_name + " " + response.user.last_name
+                context.commit("setUserFullName", full_name)
+            }).catch(error => console.log(error))
+        }
     },
     
     logout: ({commit}) => {
