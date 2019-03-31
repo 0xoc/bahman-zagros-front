@@ -8,9 +8,7 @@
             </div>
             
             <div class="row">
-                
                 <TourItem v-for="tour_gp in tour_groups" :key=tour_gp.pk :item_info="tour_gp" >
-                    
                 </TourItem>
             </div>
         </div>
