@@ -1,50 +1,27 @@
 <template>
-    <div id="app">
-        <div v-if="isLogedIn()">
-        <div id="top_left_bg"  > </div>
-        <div id="main_container" class="container">
-            <div class="row">
-               <UserMeta></UserMeta>
-            </div>
+       <div>
+        <TourItem v-for="tour_gp in tour_groups" :key=tour_gp.pk :item_info="tour_gp" >
             
-            <div class="row">
-                
-                <TourItem v-for="tour_gp in tour_groups" :key=tour_gp.pk :item_info="tour_gp" >
-                    
-                </TourItem>
-            </div>
-        </div>
-        </div>
-        <div v-else>
-            {{ redirectToLogin() }}
-        </div>
+        </TourItem>
     </div>
 
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { mapActions } from 'vuex'
+
 import TourItem from './TourItem'
-import UserMeta from './UserMeta'
+
 import api from '../api/bahman_zagros'
 
 export default {
     name: 'TourList',
     components: {
         TourItem,
-        UserMeta
     },
     data: function () {
         return {
             tours: self.tour_gps
         }
-    },
-    methods: {
-        redirectToLogin: function() {
-            this.$router.push('login')
-        },
-        ...mapGetters(['isLogedIn']),
     },
     computed: {
         tour_groups: function () {
@@ -52,36 +29,7 @@ export default {
         }
     },
     mounted: function() {
-        this.$store.dispatch('updateTourGroups')
+        this.$store.dispatch('updateTourGroups');
     }
 }
 </script>
-
-
-<style scoped>
-@import url(../assets/css/bootstrap.css);
-
-#app {
-    background-color: #D8D8D8;
-    
-}
-
-#top_left_bg {
-position: fixed;
-top:0px;
-right: 0px;
-
-width: 650px;
-height: 600px;
-
-background-image: url("../assets/image/bg_list.svg") ;
-background-size: cover; 
-}
-
-
-#main_container{
-    margin-top:20px;
-} 
-  
-</style>
-

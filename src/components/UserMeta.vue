@@ -2,15 +2,17 @@
     <div id="app" class="container">
         <div class="row">
         <div  class="col-lg-4 col-md-6 cols-sm-12">
-            <div v-if="isLogedIn" class="top_meta_info user_info">
+            <div class="top_meta_info user_info">
                 
-                {{ full_name }}
-                <span @click="logout" class="io_btn">
-                    خروج
+                <span v-if="isLogedIn">
+                    {{ full_name }}
+                    <span @click="logout" class="io_btn">
+                        خروج
+                    </span>
                 </span>
-            </div>
-            <div v-else @click="redirectToLogin" class="io_btn">
-                ورود
+                <span v-else @click="redirectToLogin" class="io_btn">
+                    ورود
+                </span>
             </div>
         </div>
         <div class="col-lg-4 offset-lg-4 col-md-6  cols-sm-12">
@@ -23,7 +25,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
     name: 'UserMeta',
@@ -31,14 +32,16 @@ export default {
         logout: function(){
             this.$store.dispatch('logout');
         },
-        ...mapGetters(['isLogedIn']),
         redirectToLogin: function() {
-            this.$router.push('login')
+            this.$router.push({name:'login'})
         },
     },
     computed:{
         full_name: function () {
             return this.$store.getters.full_name
+        },
+        isLogedIn: function () {
+            return this.$store.getters.isLogedIn
         }
     }
 }

@@ -25,7 +25,6 @@ export default {
 
 <style scoped>
     #app {
-        background-color: #303e9f;
         display: table;
         position: absolute;
         top: 0;
