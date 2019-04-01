@@ -1,10 +1,8 @@
 <template>
-       <div>
+    <div>
         <TourItem v-for="tour_gp in tour_groups" :key=tour_gp.pk :item_info="tour_gp" >
-            
         </TourItem>
     </div>
-
 </template>
 
 <script>
@@ -25,11 +23,9 @@ export default {
     },
     computed: {
         tour_groups: function () {
+            this.$store.dispatch('updateTourGroups');
             return this.$store.getters.tour_groups
         }
     },
-    mounted: function() {
-        this.$store.dispatch('updateTourGroups');
-    }
 }
 </script>

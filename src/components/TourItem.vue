@@ -1,24 +1,24 @@
 <template>
-    <div id="app">
-        <div class="col-12">
-            <div class="container">
-                <div class="row tour_item">
-                    <div class="col-lg-10 tour_item_description">
-                        <h1 class="tour_item_title" >{{ item_info.title }}</h1>
-                        <p class="tour_item_content">
-                            {{ item_info.description }}
-                        </p>
-                        <span v-if="!detail_view" class="tour_item_view" >
-                            مشاهده
-                        </span>
-                    </div>
-                    <div class="col-lg-2 tour_item_image_container">
-                        <img :src="item_info.image" class="tour_item_image" />
-                    </div>
-                </div>
+    
+<div class="col-12">
+    <div class="container">
+        <div class="row tour_item">
+            <div class="col-lg-10 tour_item_description">
+                <h1 class="tour_item_title" >{{ item_info.title }}</h1>
+                <p class="tour_item_content">
+                    {{ item_info.description }}
+                </p>
+                <span v-if="!detail_view" class="tour_item_view" >
+                    مشاهده
+                </span>
+            </div>
+            <div class="col-lg-2 tour_item_image_container">
+                <img :src="item_info.image" class="tour_item_image" />
             </div>
         </div>
     </div>
+</div>
+    
 </template>
 
 <script>
