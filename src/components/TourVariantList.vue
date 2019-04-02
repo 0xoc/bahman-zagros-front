@@ -4,32 +4,7 @@
             <TourGroupDetail :item_info="tour_group_variants.tour_group" detail_view>
             </TourGroupDetail>
 
-            <div class="row" id="table_row">
-                <table class="table table-striped table-light table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">تاریخ شروع</th>
-                            <th scope="col">تاریخ ‍پایان</th>
-                            <th scope="col">قیمت</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr 
-                        v-for="(variant,i) in tour_group_variants.variants" 
-                        :key="variant.pk"
-                        :variant="variant"
-                        >
-                            <th scope="row">{{position(i)}}</th>
-                            <td scope="col">{{ variant.start }}</td>
-                            <td scope="col">{{ variant.end }}</td>
-                            <td scope="col">{{ variant.price }} یورو</td>
-                            <td scope="col" class="btn btn-light">انتخاب</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <TourVariantDetail :variants="tour_group_variants.variants" />
  
         </div>
     </div>
@@ -37,6 +12,8 @@
 
 <script>
 import TourGroupDetail from './TourGroupDetail'
+import TourVariantDetail from './TourVariantDetail'
+
 import {mapGetters} from 'vuex'
 
 export default {
@@ -48,9 +25,7 @@ export default {
     },
     components: {
         TourGroupDetail,
-    },
-    methods: {
-        position: i => i + 1
+        TourVariantDetail
     },
     computed: {
         ...mapGetters(['tour_group_variants']),
@@ -82,10 +57,6 @@ export default {
 }
 
 
-#table_row {
-    direction: rtl;
-    border-radius: 27px;
-    overflow: hidden;
-}
+
 
 </style>

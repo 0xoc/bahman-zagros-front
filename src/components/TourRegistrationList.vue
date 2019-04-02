@@ -1,14 +1,42 @@
 <template>
     <div id="app" class="col-12">
         <div class="container">
-            
+            <TourVariantDetail :variants="tour_variant_registrations.variant" single/>
         </div>
     </div>    
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+import TourVariantDetail from './TourVariantDetail'
+
 export default {
-    name: 'TourRegistrationDetail'
+    name: 'TourRegistrationDetail',
+    components: {
+        TourVariantDetail
+    },
+    data: function () {
+        return {
+            
+        }
+    },
+    computed: {
+        ...mapGetters(['tour_variant_registrations']),
+    },
+    mounted: function () {
+        let self = this;
+        let store = self.$store
+        let token = store.getters.getToken
+        let variant_id = self.$route.params.variant_id
+
+        store.dispatch("updateTourVariantRegistrations", {token, variant_id})
+
+        store.watch(()=>store.getters.getToken, (token) => {
+            store.dispatch("updateTourVariantRegistrations", {token, variant_id})
+        })
+    }
+    
 }
 </script>
 

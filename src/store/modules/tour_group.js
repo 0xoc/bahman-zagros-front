@@ -3,13 +3,14 @@ import api from '../../api/bahman_zagros'
 const state = {
     tour_groups: [],
     tour_group_variants: [],
-
+    tour_variant_registrations: [],
 }
 
 
 const getters = {
     tour_groups: state => state.tour_groups,
-    tour_group_variants: state => state.tour_group_variants
+    tour_group_variants: state => state.tour_group_variants,
+    tour_variant_registrations: sate => state.tour_variant_registrations
 }
 
 const actions = {
@@ -26,6 +27,13 @@ const actions = {
         }).catch(error => {
             console.log(error)
         })
+    },
+    updateTourVariantRegistrations: (context, payload) => {
+        api.get_tour_registrations(payload.token, payload.variant_id).then(
+            response => {
+                context.commit('setTourVariantRegistrations', response)
+            }
+        ).catch(error => console.log(error))
     }
 }
 
@@ -35,6 +43,10 @@ const mutations = {
     },
     setTourGroupVariants: (state, tgv) =>{
         state.tour_group_variants = tgv
+    },
+
+    setTourVariantRegistrations: (state, tvr) => {
+        state.tour_variant_registrations = tvr
     }
 }
 

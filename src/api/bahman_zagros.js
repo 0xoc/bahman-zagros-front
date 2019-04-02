@@ -70,9 +70,9 @@ let get_tour_registration_tickets = (token, tr_id) => {
     })
 }
 
-let get_tour_registration_detail = (token, tr_id) => {
+let get_tour_registrations = (token, variant_id) => {
     return new Promise((resolve, reject) => {
-        let endpoint = `${ROOT_URL}/api/v2/tour-registrations/${tr_id}/`
+        let endpoint = `${ROOT_URL}/api/v2/tour-variants/${variant_id}/registrations/`
         axios.get(endpoint,{
             headers: {
                 // headers
@@ -103,7 +103,7 @@ export default {
     get_tour_groups,
     get_user_detail,
     get_tour_registration_tickets,
-    get_tour_registration_detail,
+    get_tour_registrations,
     get_tour_group_variants,
     
 };

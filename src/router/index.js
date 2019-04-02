@@ -25,7 +25,7 @@ const routes = [
                 name: 'all-tour-groups'
             },
             {
-                path: 'tour-registrations/:gp',
+                path: 'tour-registrations/:variant_id',
                 component: TourRegistrationList,
                 name: 'all-tour-registrations'
             },
