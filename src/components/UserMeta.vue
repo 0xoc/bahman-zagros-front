@@ -2,8 +2,7 @@
     <div id="app" class="container">
         <div class="row">
         <div  class="col-lg-4 col-md-6 cols-sm-12">
-            <div class="top_meta_info user_info">
-                
+            <div  class="top_meta_info user_info">
                 <span v-if="isLogedIn">
                     {{ full_name }}
                     <span @click="logout" class="io_btn">
@@ -25,6 +24,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 
 export default {
     name: 'UserMeta',
@@ -37,12 +37,7 @@ export default {
         },
     },
     computed:{
-        full_name: function () {
-            return this.$store.getters.full_name
-        },
-        isLogedIn: function () {
-            return this.$store.getters.isLogedIn
-        }
+        ...mapGetters(['isLogedIn','full_name']),
     }
 }
 </script>
@@ -69,6 +64,10 @@ export default {
 .user_info {
     background-image: linear-gradient(+90deg, #722599 0%, #D94A7C 100%);
     color: #fff;
+}
+
+.tour_info {
+    background: #fff;
 }
 
 </style>

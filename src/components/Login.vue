@@ -34,7 +34,7 @@ export default {
         ...mapActions(['login',]),
         
         redirectToTourList: function ()  {
-            this.$router.push({name: 'all-tours'})
+            this.$router.push({name:'all-tour-groups'})
         }
 
     },
