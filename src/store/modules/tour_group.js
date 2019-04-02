@@ -34,6 +34,14 @@ const actions = {
                 context.commit('setTourVariantRegistrations', response)
             }
         ).catch(error => console.log(error))
+    },
+
+    createTourRegistration: (context, payload) => {
+        api.create_tour_registration(payload.token, payload.reg_info).then(response => {
+            context.dispatch("updateTourVariantRegistrations", {
+                token: payload.token, variant_id: payload.reg_info.tour
+            })
+        }).catch(error => console.log(error))
     }
 }
 

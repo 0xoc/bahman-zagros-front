@@ -87,6 +87,29 @@ let get_tour_registrations = (token, variant_id) => {
 }
 
 
+let create_tour_registration = (token, reg_data) => {
+    return new Promise((resolve,reject) => {
+        let endpoint = `${ROOT_URL}/api/v2/tour-variants/registrations/create/`
+        
+        axios.post(endpoint, {
+            'tour': reg_data.tour,
+            'title': reg_data.title,
+            'group': reg_data.group,
+            'is_persian': reg_data.is_persian
+        }, {
+            headers: {
+                // headers
+                Authorization: `Token ${token}`,
+            }
+        }).then(response => {
+            resolve(response.data.token)
+        })
+        .catch(error => {
+            reject(error.response)
+        });
+    })
+}
+
 let get_user_detail = (token) => {
     return new Promise((resolve,reject) => {
         let endpoint = `${ROOT_URL}/api/v2/profile/detail/`
@@ -105,5 +128,6 @@ export default {
     get_tour_registration_tickets,
     get_tour_registrations,
     get_tour_group_variants,
+    create_tour_registration,
     
 };

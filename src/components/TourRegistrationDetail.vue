@@ -6,21 +6,54 @@
                     <th scope="col">#</th>
                     <th scope="col">عنوان</th>
                     <th scope="col">نوع</th>
-                    <th scope="col">تعداد ثبت نام</th>
                     <th scope="col">ایرانی / خارجی</th>
+                    <th scope="col">تعداد ثبت نام</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(tiket, i) in tickets" :key="tiket.pk">
-                    <th scope="row"> {{ i }}</th>
-                    <td scope="col">{{ tiket.first_name }}</td>
-                    <td scope="col">{{ tiket.last_name }}</td>
-                    <td scope="col">{{ (tiket.is_persian)? tiket.national_id: tiket.passport_number }}</td>
-                    <td scope="col">{{ tiket.email }}</td>
-                    <td scope="col">{{ tiket.phone }}</td>
-                    <td scope="col">{{ (tiket.is_persian)? tiket.city: tiket.nationality }}</td>
-                    <td scope="col">{{ tiket.birth_date }}</td>
+                <tr v-if="new_tg" class="form-group" >
+                    <th scope="row"> جدید 
+                        <form id="form" type="hidden" @submit.prevent="make_new()"></form>
+                    </th>
+
+                    <td scope="col">
+                        <input 
+                            form="form" type="text" 
+                            placeholder="عنوان" class="form-control" required 
+                            v-model="title"
+                        />
+                    </td>
+                    <td scope="col">
+                        <select v-model="group" form="form"  class="form-control">
+                            <option value="true">
+                                گروهی
+                            </option>
+                            <option value="false">
+                                فردی
+                            </option>
+                        </select>
+                    </td>
+                    <td scope="col">
+                        <select v-model="is_persian" form="form"  class="form-control">
+                            <option value="true">
+                                ایرانی
+                            </option>
+                            <option value="false">
+                                خارجی
+                            </option>
+                        </select>
+                    </td>
+                    <td scope="col"></td>
+                    <td scope="col"> <input form="form" class="btn btn-dark" type="submit" value="ثبت" /></td>
+                </tr>
+
+                <tr v-for="(tour_registration, i) in tour_registrations" :key="tour_registration.pk">
+                    <th scope="row"> {{ position(i) }}</th>
+                    <td scope="col">{{ tour_registration.title }}</td>
+                    <td scope="col">{{ (tour_registration.group) ? "گروهی": "فردی" }}</td>
+                    <td scope="col">{{ (tour_registration.is_persian) ? "ایرانی": "خارجی" }}</td>
+                    <td scope="col">{{ tour_registration.quantity }}</td>
                     <td scope="col" class="btn btn-dark">بیشتر</td>
                 </tr>
             </tbody>
@@ -29,19 +62,45 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
     name: "TourRegistrationDetail",
     data: () => {
         return {
+            title: "",
+            group: "true",
+            is_persian: "true"
         }
     },
+    props:{
+        'tour': Number,
+        'tour_registrations': Object,
+        'new_tg': Boolean,
+    },
     methods: {
-
+        ...mapActions(['createTourRegistration']),
+        position: i => i+1,
+        make_new: function () {
+            console.log("fukeesssss")
+            console.log(this.tour)
+            let c = confirm("Are you sure?")
+            if (c){
+                this.createTourRegistration({
+                    token: this.getToken,
+                    reg_info: {
+                        tour: this.tour,
+                        title: this.title, 
+                        group: this.group, 
+                        is_persian: this.is_persian
+                    }
+                })
+            }
+        }
     },
     
     computed: {
-
+        ...mapGetters(['getToken'])
     }
 }
 
@@ -61,6 +120,14 @@ export default {
     background-color: transparent;
 }
 
+table {
+    text-align: center;
+}
+
+.form-control {
+    background-color: #454d55;
+    color:#fff;
+}
 </style>
 
 

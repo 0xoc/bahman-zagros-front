@@ -2,7 +2,11 @@
     <div id="app" class="col-12">
         <div class="container">
             <TourVariantDetail :variants="tour_variant_registrations.variant" single/>
-            <TourRegistrationDetail />
+            <TourRegistrationDetail
+                :tour="$route.params.variant_id"
+                :tour_registrations="tour_variant_registrations.registrations" 
+                new_tg
+            />
         </div>
     </div>    
 </template>
