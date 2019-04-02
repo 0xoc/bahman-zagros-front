@@ -9,7 +9,8 @@ import TourVariantList from '../components/TourVariantList'
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/login', component: Login, name: 'login'},
+    { path: '/:fd', component: Login, name: 'login'},
+    { path: '/', component: Login, name: 'login'},
     {
         path:'/tours',
         component: Page,

@@ -10,7 +10,7 @@ const state = {
 const getters = {
     tour_groups: state => state.tour_groups,
     tour_group_variants: state => state.tour_group_variants,
-    tour_variant_registrations: sate => state.tour_variant_registrations
+    tour_variant_registrations: state => state.tour_variant_registrations
 }
 
 const actions = {

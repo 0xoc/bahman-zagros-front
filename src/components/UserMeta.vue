@@ -11,6 +11,7 @@
                 </span>
                 <span v-else @click="redirectToLogin" class="io_btn">
                     ورود
+                    {{ redirectToLogin() }}
                 </span>
             </div>
         </div>
@@ -35,7 +36,7 @@ export default {
                 this.$store.dispatch('logout');                
         },
         redirectToLogin: function() {
-            this.$router.push({name:'login'})
+            this.$router.push({name:'login', params:{'fd': "true"}})
         },
     },
     computed:{

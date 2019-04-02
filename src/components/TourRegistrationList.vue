@@ -2,6 +2,7 @@
     <div id="app" class="col-12">
         <div class="container">
             <TourVariantDetail :variants="tour_variant_registrations.variant" single/>
+            <TourRegistrationDetail />
         </div>
     </div>    
 </template>
@@ -10,11 +11,13 @@
 
 import { mapGetters } from 'vuex'
 import TourVariantDetail from './TourVariantDetail'
+import TourRegistrationDetail from './TourRegistrationDetail'
 
 export default {
-    name: 'TourRegistrationDetail',
+    name: 'TourRegistrationList',
     components: {
-        TourVariantDetail
+        TourVariantDetail,
+        TourRegistrationDetail
     },
     data: function () {
         return {

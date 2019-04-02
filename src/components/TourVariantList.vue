@@ -35,13 +35,12 @@ export default {
         let token = store.getters.getToken
         let tour_id = this.$route.params.tour_id
         let self = this;
+        
         store.dispatch('updateTourGroupVariants', {token, tour_id})
 
         store.watch(()=>store.getters.getToken, (token) => {
             if (store.getters.isLogedIn)
                 store.dispatch('updateTourGroupVariants', {token, tour_id})
-            else
-                self.$router.push({name:'login'})
         })
     }
 }
