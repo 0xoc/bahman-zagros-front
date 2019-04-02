@@ -20,9 +20,8 @@
                         v-for="(variant,i) in tour_group_variants.variants" 
                         :key="variant.pk"
                         :variant="variant"
-                        :i="position(i)"
                         >
-                            <th scope="row">{{i}}</th>
+                            <th scope="row">{{position(i)}}</th>
                             <td scope="col">{{ variant.start }}</td>
                             <td scope="col">{{ variant.end }}</td>
                             <td scope="col">{{ variant.price }} یورو</td>
