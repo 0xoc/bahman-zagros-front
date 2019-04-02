@@ -4,7 +4,7 @@
             <TourGroupDetail :item_info="tour_group_variants.tour_group" detail_view>
             </TourGroupDetail>
 
-            <div class="row">
+            <div class="row" id="table_row">
                 <table class="table table-striped table-light table-hover">
                     <thead>
                         <tr>
@@ -82,7 +82,8 @@ export default {
     padding-bottom: 30px;
 }
 
-.table {
+
+#table_row {
     direction: rtl;
     border-radius: 27px;
     overflow: hidden;

@@ -5,11 +5,13 @@
         <p>
             {{ item_info.description }}
         </p>
+        <router-link :to="view_link">
         <div v-if="!detail_view" class="view_btn">
-            <router-link :to="view_link">
+            
             مشاهده
-            </router-link>
+            
         </div>
+        </router-link>
     </div>
     <div class="col-lg-3 image">
         <img :src="item_info.image" />

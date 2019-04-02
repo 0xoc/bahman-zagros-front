@@ -30,7 +30,9 @@ export default {
     name: 'UserMeta',
     methods:{
         logout: function(){
-            this.$store.dispatch('logout');
+            let c = confirm("Are You Sure? ")
+            if (c)
+                this.$store.dispatch('logout');
         },
         redirectToLogin: function() {
             this.$router.push({name:'login'})
