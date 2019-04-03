@@ -53,22 +53,6 @@ let get_tour_group_variants = (token, tour_id) => {
     })
 }
 
-let get_tour_registration_tickets = (token, tr_id) => {
-    return new Promise((resolve, reject) => {
-        let endpoint = `${ROOT_URL}/api/v2/tour-registration/${tr_id}/tickets/`
-        
-        axios.get(endpoint,{
-            headers: {
-                // headers
-                Authorization: `Token ${token}`
-            }
-        }).then(response => {
-            resolve(response.data)
-        }).catch(error => {
-            reject(error.response)
-        })
-    })
-}
 
 let get_tour_registrations = (token, variant_id) => {
     return new Promise((resolve, reject) => {
@@ -114,6 +98,18 @@ let create_tour_registration = (token, reg_data) => {
 let get_user_detail = (token) => {
     return new Promise((resolve,reject) => {
         let endpoint = `${ROOT_URL}/api/v2/profile/detail/`
+        axios.get(endpoint,{
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        }).then(response => resolve(response.data)).catch(error => reject(error.response))
+    })
+}
+
+
+let get_tour_registration_tickets = (token, tour_reg_id) => {
+    return new Promise((resolve,reject) => {
+        let endpoint = `${ROOT_URL}/api/v2/tour-registrations/${tour_reg_id}/tickets/`
         axios.get(endpoint,{
             headers: {
                 Authorization: `Token ${token}`

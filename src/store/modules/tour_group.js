@@ -4,13 +4,15 @@ const state = {
     tour_groups: [],
     tour_group_variants: [],
     tour_variant_registrations: [],
+    tour_registration_tickets: [],
 }
 
 
 const getters = {
     tour_groups: state => state.tour_groups,
     tour_group_variants: state => state.tour_group_variants,
-    tour_variant_registrations: state => state.tour_variant_registrations
+    tour_variant_registrations: state => state.tour_variant_registrations,
+    tour_registration_tickets: state => state.tour_registration_tickets
 }
 
 const actions = {
@@ -42,6 +44,12 @@ const actions = {
                 token: payload.token, variant_id: payload.reg_info.tour
             })
         }).catch(error => console.log(error))
+    },
+    updateTourRegistrationTickets: (context, payload) => {
+        api.get_tour_registration_tickets(payload.token, payload.tour_reg_id).then(response => {
+                context.commit("setTourRegistrationTickets", response)
+            }
+        ).catch(error => console.log(error))
     }
 }
 
@@ -55,6 +63,9 @@ const mutations = {
 
     setTourVariantRegistrations: (state, tvr) => {
         state.tour_variant_registrations = tvr
+    },
+    setTourRegistrationTickets: (state, trt) => {
+        state.tour_registration_tickets = trt
     }
 }
 

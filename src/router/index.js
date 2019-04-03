@@ -10,7 +10,7 @@ import TourRegistrationTickets from '../components/TourRegistrationTickets'
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/:fd', component: Login, name: 'login'},
+    { path: '/:fd', component: Login, name: 'login-f'},
     { path: '/', component: Login, name: 'login'},
     {
         path:'/tours',
@@ -37,7 +37,7 @@ const routes = [
                 name: 'tour-registration-detail'
             },
             {
-                path: 'tour-registrations/:id/tickets',
+                path: 'tour-registrations/:reg_id/tickets',
                 component: TourRegistrationTickets,
                 name: 'tour-registration-tickets'
             }
