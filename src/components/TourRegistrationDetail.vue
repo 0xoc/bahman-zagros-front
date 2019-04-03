@@ -106,7 +106,9 @@
                         <td scope="col">{{ (tour_registration.group) ? "گروهی": "فردی" }}</td>
                         <td scope="col">{{ (tour_registration.is_persian) ? "ایرانی": "خارجی" }}</td>
                         <td scope="col">{{ tour_registration.quantity }}</td>
+                        <router-link :to="reg_link(tour_registration.pk)">
                         <td scope="col" class="btn btn-dark">ثبت نام</td>
+                        </router-link>
                     </tr>
                 </tbody>
             </table>
@@ -138,6 +140,12 @@ export default {
             if (this.group == "true")
                 return true
             return false
+        },
+        reg_link: (id) => {
+            return {
+                name: "tour-registration-tickets",
+                params: {reg_id: id}
+            }
         },
         make_new: function () {
             let c = confirm("Are you sure?")
