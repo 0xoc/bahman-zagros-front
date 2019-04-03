@@ -44,41 +44,54 @@
                                 </option>
                             </select>
                         </td>
-                        <td scope="col"></td>
+                        <td v-if="is_group()" scope="col">
+                            <input form="form" type="number" class="form-control" v-model="count" min="4" required/>
+                        </td>
+                        <td v-else scope="col"></td>
                         <td scope="col"> <input form="form" class="btn btn-dark" type="submit" value="ثبت" /></td>
                     </tr>
                     <tr v-if="new_tg" class="small-row-show">
                         <td colspan="6">
                             <table class="table">
                                 <tr>
-                                    <td colspan="3">
+                                    <td v-if="!is_group" colspan="3">
                                         <input 
-                                form="form" type="text" 
-                                placeholder="عنوان" class="form-control" required 
-                                v-model="title"
-                            />
+                                            form="form" type="text" 
+                                            placeholder="عنوان" class="form-control" required 
+                                            v-model="title"
+                                        />
+                                    </td>
+                                    <td v-else colspan="4">
+                                        <input 
+                                            form="form" type="text" 
+                                            placeholder="عنوان" class="form-control" required 
+                                            v-model="title"
+                                        />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <select v-model="group" form="form"  class="form-control">
-                                <option value="true">
-                                    گروهی
-                                </option>
-                                <option value="false">
-                                    فردی
-                                </option>
-                            </select>
+                                            <option value="true">
+                                                گروهی
+                                            </option>
+                                            <option value="false">
+                                                فردی
+                                            </option>
+                                        </select>
                                     </td>
                                     <td>
                                         <select v-model="is_persian" form="form"  class="form-control">
-                                <option value="true">
-                                    ایرانی
-                                </option>
-                                <option value="false">
-                                    خارجی
-                                </option>
-                            </select>
+                                            <option value="true">
+                                                ایرانی
+                                            </option>
+                                            <option value="false">
+                                                خارجی
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td v-if="is_group()" scope="col">
+                                        <input form="form" type="number" class="form-control" v-model="count" min="4" required/>
                                     </td>
                                     <td>
                                         <input form="form" class="btn btn-dark" type="submit" value="ثبت" />
@@ -93,7 +106,7 @@
                         <td scope="col">{{ (tour_registration.group) ? "گروهی": "فردی" }}</td>
                         <td scope="col">{{ (tour_registration.is_persian) ? "ایرانی": "خارجی" }}</td>
                         <td scope="col">{{ tour_registration.quantity }}</td>
-                        <td scope="col" class="btn btn-dark">بیشتر</td>
+                        <td scope="col" class="btn btn-dark">ثبت نام</td>
                     </tr>
                 </tbody>
             </table>
@@ -109,7 +122,8 @@ export default {
         return {
             title: "",
             group: "true",
-            is_persian: "true"
+            is_persian: "true",
+            count: 4,
         }
     },
     props:{
@@ -120,6 +134,11 @@ export default {
     methods: {
         ...mapActions(['createTourRegistration']),
         position: i => i+1,
+        is_group: function () {
+            if (this.group == "true")
+                return true
+            return false
+        },
         make_new: function () {
             let c = confirm("Are you sure?")
             if (c){
@@ -129,9 +148,14 @@ export default {
                         tour: this.tour,
                         title: this.title, 
                         group: this.group, 
+                        count: this.count,
                         is_persian: this.is_persian
                     }
                 })
+
+                this.title = "",
+                this.count = "4"
+
             }
         }
     },

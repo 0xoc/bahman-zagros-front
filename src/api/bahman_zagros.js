@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const ROOT_URL = "http://192.168.1.55:8000";
+const ROOT_URL = "http://127.0.0.1:8000";
 
 
 let getToken = (username,password) => {
@@ -95,6 +95,7 @@ let create_tour_registration = (token, reg_data) => {
             'tour': reg_data.tour,
             'title': reg_data.title,
             'group': reg_data.group,
+            'count': reg_data.count,
             'is_persian': reg_data.is_persian
         }, {
             headers: {

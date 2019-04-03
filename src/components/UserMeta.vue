@@ -1,7 +1,7 @@
 <template>
     <div id="app" class="container">
         <div class="row">
-        <div  class="col-lg-4 col-md-6 cols-sm-12">
+        <div  class="col-lg-4 col-md-4 col-sm-12">
             <div  class="top_meta_info user_info">
                 <span v-if="isLogedIn">
                     {{ full_name }}
@@ -15,7 +15,25 @@
                 </span>
             </div>
         </div>
-        <div class="col-lg-4 offset-lg-4 col-md-6  cols-sm-12">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="top_meta_info navigation">
+                <div class="container">
+                    <div class="row"> 
+                        <div class="col-4">
+                            <img @click="back()" src="../assets/image/left-arrow.png" class="left"/>
+                        </div>
+                        <div class="col-4">
+                            <img @click="home()" src="../assets/image/home.png" class="center"/>
+                        </div>
+
+                        <div class="col-4">
+                            <img @click="fd()" src="../assets/image/right-arrow.png" class="right"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4  col-sm-12">
             <div class="top_meta_info tour_info">
                 رزرو تور بهمن زاگرس
             </div>
@@ -38,6 +56,15 @@ export default {
         redirectToLogin: function() {
             this.$router.push({name:'login', params:{'fd': "true"}})
         },
+        home: function () {
+            this.$router.push({name:'all-tour-groups'})   
+        },
+        back: function () {
+            this.$router.go(-1);
+        },
+        fd: function () {
+            this.$router.go(1);
+        }
     },
     computed:{
         ...mapGetters(['isLogedIn','full_name']),
@@ -56,9 +83,9 @@ export default {
 }
 
 .top_meta_info{
-    border-radius: 27px;
+    border-radius: 0px;
     height: 50px;
-    margin-top:10px;    
+    margin-top:0px;    
     padding:12px; 
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
     text-align: right;
@@ -66,11 +93,35 @@ export default {
 
 .user_info {
     background-image: linear-gradient(+90deg, #722599 0%, #D94A7C 100%);
-    color: #fff;
+    background: #f4f3f3;
+    color: #000;
 }
 
 .tour_info {
-    background: #fff;
+    background: #c5c5c5;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left {
+    float:left;
+}
+
+.right {
+    float: right;
+}
+
+img {
+    height: 25px;
+    display: block;
+    cursor: pointer;
+}
+
+.navigation {
+    background: #dfdfdf;
 }
 
 </style>

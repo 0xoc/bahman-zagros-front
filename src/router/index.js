@@ -6,6 +6,7 @@ import Page from '../components/Page'
 import TourRegistrationList from '../components/TourRegistrationList'
 import TourRegistrationDetail from '../components/TourRegistrationDetail'
 import TourVariantList from '../components/TourVariantList'
+import TourRegistrationTickets from '../components/TourRegistrationTickets'
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,6 +35,11 @@ const routes = [
                 path: 'tour-registrations/detail/:id',
                 component: TourRegistrationDetail,
                 name: 'tour-registration-detail'
+            },
+            {
+                path: 'tour-registrations/:id/tickets',
+                component: TourRegistrationTickets,
+                name: 'tour-registration-tickets'
             }
         ]
     }
