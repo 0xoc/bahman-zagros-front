@@ -50,6 +50,15 @@ const actions = {
                 context.commit("setTourRegistrationTickets", response)
             }
         ).catch(error => console.log(error))
+    },
+
+    createTicket: (context, payload) => {
+        api.create_ticket(payload.token, payload.ticket).then(response => {
+            context.dispatch("updateTourRegistrationTickets", {
+                token: payload.token,
+                tour_reg_id: payload.ticket.tour_registration
+            })
+        }).catch(error => console.log(error));
     }
 }
 

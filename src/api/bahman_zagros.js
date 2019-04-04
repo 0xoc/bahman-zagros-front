@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const ROOT_URL = "http://127.0.0.1:8000";
+const ROOT_URL = "http://192.168.1.55:8000";
 
 
 let getToken = (username,password) => {
@@ -70,6 +70,33 @@ let get_tour_registrations = (token, variant_id) => {
     })
 }
 
+let create_ticket = (token, ticket) => {
+    return new Promise(function (resolve, reject) {
+        let api_token_auth_url = `${ROOT_URL}/api/v2/ticket/`;
+        
+        axios.post(api_token_auth_url, {
+            "tour_registration": ticket.tour_registration,
+            "first_name": ticket.first_name,
+            "email": ticket.email,
+            "phone": ticket.phone,
+            "passport_number": ticket.passport_number,
+            "last_name": ticket.last_name,
+            "national_id": ticket.national_id,
+            "nationality": ticket.nationality,
+            "city": ticket.city,
+            "birth_date": ticket.birth_date,
+            "description": ticket.description,
+            "is_persian": ticket.is_persian
+        }).then(response => {
+            resolve(response.data.token)
+        })
+        .catch(error => {
+            reject(error.response)
+        });
+        
+    });
+}
+
 
 let create_tour_registration = (token, reg_data) => {
     return new Promise((resolve,reject) => {
@@ -126,5 +153,6 @@ export default {
     get_tour_registrations,
     get_tour_group_variants,
     create_tour_registration,
+    create_ticket,
     
 };

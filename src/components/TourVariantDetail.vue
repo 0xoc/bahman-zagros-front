@@ -21,16 +21,16 @@
                 <td scope="col">{{ variant.end }}</td>
                 <td scope="col">{{ variant.price }} یورو</td>
                 <router-link :to="select_link(variant.pk)">
-                <td scope="col" class="btn btn-light">انتخاب</td>
+                <td scope="col" class="btn btn-light btn-block">انتخاب</td>
                 </router-link>
             </tr>
         </tbody>
         <tbody v-else>
             <tr>
-                <td scope="col">{{ variants.tour_group.title }}</td>
-                <td scope="col">{{ variants.start }}</td>
-                <td scope="col">{{ variants.end }}</td>
-                <td scope="col">{{ variants.price }} یورو</td>
+                <td scope="col">{{ variant.tour_group.title }}</td>
+                <td scope="col">{{ variant.start }}</td>
+                <td scope="col">{{ variant.end }}</td>
+                <td scope="col">{{ variant.price }} یورو</td>
 
             </tr>
         </tbody>
@@ -43,7 +43,8 @@
 export default {
     name: 'TourVariantDetail',
     props: {
-        'variants': Object,
+        'variants': Array,
+        'variant': Object,
         'single': Boolean
         },
     methods: {

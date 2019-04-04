@@ -14,7 +14,7 @@
                 <tbody>
                     <tr v-if="new_tg" class="small-row-hide">
                         <th scope="row"> جدید 
-                            <form id="form" type="hidden" @submit.prevent="make_new()"></form>
+                            <form id="form" type="hidden" @submit.prevent="make_new"></form>
                         </th>
 
                         <td scope="col">
@@ -94,7 +94,7 @@
                                         <input form="form" type="number" class="form-control" v-model="count" min="4" required/>
                                     </td>
                                     <td>
-                                        <input form="form" class="btn btn-dark" type="submit" value="ثبت" />
+                                        <input form="form" class="btn btn-dark btn-block" type="submit" value="ثبت" />
                                     </td>
                                 </tr>
                             </table>
@@ -107,7 +107,7 @@
                         <td scope="col">{{ (tour_registration.is_persian) ? "ایرانی": "خارجی" }}</td>
                         <td scope="col">{{ tour_registration.quantity }}</td>
                         <router-link :to="reg_link(tour_registration.pk)">
-                        <td scope="col" class="btn btn-dark">ثبت نام</td>
+                        <td scope="col" class="btn btn-dark btn-block">ثبت نام</td>
                         </router-link>
                     </tr>
                 </tbody>
@@ -130,7 +130,7 @@ export default {
     },
     props:{
         'tour': Number,
-        'tour_registrations': Object,
+        'tour_registrations': Array,
         'new_tg': Boolean,
     },
     methods: {
@@ -147,7 +147,7 @@ export default {
                 params: {reg_id: id}
             }
         },
-        make_new: function () {
+        make_new: function (e) {
             let c = confirm("Are you sure?")
             if (c){
                 this.createTourRegistration({
@@ -160,10 +160,11 @@ export default {
                         is_persian: this.is_persian
                     }
                 })
-
+                
                 this.title = "",
                 this.count = "4"
 
+                e.target.reset();
             }
         }
     },

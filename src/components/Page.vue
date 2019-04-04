@@ -27,9 +27,14 @@ export default {
 <style scoped>
 @import url(../assets/css/bootstrap.css);
 
+@font-face {
+  font-family: iran_sans;
+  src: url(../assets/fonts/irsans.ttf);
+}
+
 #app {
     background-color: #D8D8D8;
-    
+    font-family: iran_sans;
 }
 
 #top_left_bg {
