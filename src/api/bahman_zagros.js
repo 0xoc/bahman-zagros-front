@@ -1,6 +1,9 @@
+import Vue from 'vue'
 import axios from 'axios'
+import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
+Vue.component('date-picker', VuePersianDatetimePicker);
 
-const ROOT_URL = "http://192.168.1.55:8000";
+const ROOT_URL = "http://127.0.0.1:8000";
 
 
 let getToken = (username,password) => {
@@ -73,7 +76,9 @@ let get_tour_registrations = (token, variant_id) => {
 let create_ticket = (token, ticket) => {
     return new Promise(function (resolve, reject) {
         let api_token_auth_url = `${ROOT_URL}/api/v2/ticket/`;
-        
+        // console.log('create_ticket')
+        // console.log(ticket.address)
+        // resolve()
         axios.post(api_token_auth_url, {
             "tour_registration": ticket.tour_registration,
             "first_name": ticket.first_name,
@@ -84,6 +89,7 @@ let create_ticket = (token, ticket) => {
             "national_id": ticket.national_id,
             "nationality": ticket.nationality,
             "city": ticket.city,
+            "address": ticket.address,
             "birth_date": ticket.birth_date,
             "description": ticket.description,
             "is_persian": ticket.is_persian
@@ -102,9 +108,14 @@ let create_tour_registration = (token, reg_data) => {
     return new Promise((resolve,reject) => {
         let endpoint = `${ROOT_URL}/api/v2/tour-variants/registrations/create/`
         
+        console.log("data:");
+        console.log(reg_data)
+        console.log("end data")
+
         axios.post(endpoint, {
             'tour': reg_data.tour,
             'title': reg_data.title,
+            'date': reg_data.date,
             'group': reg_data.group,
             'count': reg_data.count,
             'is_persian': reg_data.is_persian
@@ -114,10 +125,13 @@ let create_tour_registration = (token, reg_data) => {
                 Authorization: `Token ${token}`,
             }
         }).then(response => {
-            resolve(response.data.token)
+            console.log("success");
+            resolve(response.data.token);
         })
         .catch(error => {
-            reject(error.response)
+            console.log("error");
+            reject(error.response);
+            console.log("end error")
         });
     })
 }
@@ -141,7 +155,10 @@ let get_tour_registration_tickets = (token, tour_reg_id) => {
             headers: {
                 Authorization: `Token ${token}`
             }
-        }).then(response => resolve(response.data)).catch(error => reject(error.response))
+        }).then(response => {
+            //jdnc
+            resolve(response.data)
+        }).catch(error => reject(error.response))
     })
 }
 

@@ -17,8 +17,8 @@
             :key="variant.pk"
             >
                 <th scope="row">{{position(i)}}</th>
-                <td scope="col">{{ variant.start }}</td>
-                <td scope="col">{{ variant.end }}</td>
+                <td scope="col">{{ (variant.start == null) ? "روزانه" : variant.start }}</td>
+                <td scope="col">{{ (variant.end == null) ? "روزانه" : variant.end }}</td>
                 <td scope="col">{{ variant.price }} یورو</td>
                 <router-link :to="select_link(variant.pk)">
                 <td scope="col" class="btn btn-light btn-block">انتخاب</td>
@@ -28,8 +28,8 @@
         <tbody v-else>
             <tr>
                 <td scope="col">{{ variant.tour_group.title }}</td>
-                <td scope="col">{{ variant.start }}</td>
-                <td scope="col">{{ variant.end }}</td>
+                <td scope="col">{{ (variant.start == null) ? "روزانه" : variant.start }}</td>
+                <td scope="col">{{ (variant.end == null) ? "روزانه" : variant.end }}</td>
                 <td scope="col">{{ variant.price }} یورو</td>
 
             </tr>

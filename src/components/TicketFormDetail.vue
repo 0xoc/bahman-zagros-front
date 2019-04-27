@@ -24,6 +24,7 @@
                     <hr/>
                     </div>
                 </div>
+
                 <div class="col-lg-2  col-md-12 col-sm-12 col-xs-12">
                     <div class="info_pack">
                         <div class="container ">
@@ -43,11 +44,23 @@
                                 <span v-if="ticket.is_persian" class="  col-12 label">شهر:</span>
                                 <span v-else class="  col-12 label">ملیت:</span>
                                 <span v-if="ticket.is_persian" class="  col-12 data">
-                                    {{ (ticket.city == "")? "-": ticket.city }} 
+                                    {{ (ticket.city == "") ? "-" : ticket.city }} 
                                 </span>
                                 <span v-else class="  col-12 data"> 
                                     {{ (ticket.nationality == "") ? "-": ticket.nationality }} 
                                 </span>
+                            </div>
+                        </div>
+                    <hr/>
+                    </div>
+                </div>
+
+                <div class="col-lg-4  col-md-12 col-sm-12 col-xs-12" >
+                    <div class="info_pack">
+                        <div class="container ">
+                            <div class="row">
+                                <span class="col-12 label">آدرس:</span>
+                                <span class="col-12 data"> {{ (ticket.address == null) ? "-" : ticket.address }} </span>
                             </div>
                         </div>
                     <hr/>
@@ -61,7 +74,7 @@
                                 <span v-if="ticket.is_persian" class="  col-12 label">شماره ملی:</span>
                                 <span v-else class="  col-12 label">شماره پاسپورت:</span>
                                 <span v-if="ticket.is_persian" class="  col-12 data"> 
-                                    {{ (ticket.national_id == "")? "-" : ticket.national_id }}
+                                    {{ (ticket.national_id == "" )? "-" : ticket.national_id }}
                                 </span>
                                 <span v-else class="  col-12 data"> 
                                     {{ (ticket.passport_number == "") ? "-" : ticket.passport_number }} 
@@ -83,7 +96,7 @@
                     <hr/>
                     </div>
                 </div>
-
+                
                 <div class="col-3">
                     <div class="info_pack">
                         <div class="container ">
@@ -146,6 +159,19 @@
                                 </span>
                                 <span v-else class="  col-12 data">
                                     <input type="text" v-model="nationality" :form="form" placeholder="ملیت" class="form-control" />
+                                </span>
+                            </div>
+                        </div>
+                    <hr/>
+                    </div>
+                </div>
+
+                <div class="col-lg-4  col-md-12 col-sm-12 col-xs-12" >
+                    <div class="info_pack">
+                        <div class="container ">
+                            <div class="row">
+                                <span class="col-12 data">
+                                    <input type="text" v-model="address" :form="form" placeholder="آدرس" class="form-control" /> 
                                 </span>
                             </div>
                         </div>
@@ -240,21 +266,23 @@ export default {
                     national_id: self.national_id,
                     nationality: self.nationality,
                     city: self.city,
+                    address: self.address,
                     birth_date: self.birth_date,
-                    description: "",
+                    description: null,
                     is_persian: self.tour_reg.is_persian
                 }});
 
-                self.first_name = "";
-                self.email = "";
-                self.phone = "";
-                self.passport_number = "";
-                self.last_name = "";
-                self.national_id = "";
-                self.nationality = "";
-                self.city = "";
+                self.first_name = null;
+                self.email = null;
+                self.phone = null;
+                self.passport_number = null;
+                self.last_name = null;
+                self.national_id = null;
+                self.nationality = null;
+                self.city = null;
+                self.address = null,
                 self.birth_date = null;
-                self.description = "";
+                self.description = null;
                 self.is_persian = false;
 
                 e.target.reset();
@@ -272,6 +300,7 @@ export default {
             national_id: "",
             nationality: "",
             city: "",
+            address: "",
             birth_date: null,
             description: "",
             is_persian: false

@@ -6,6 +6,7 @@
                         <th scope="col">#</th>
                         <th scope="col">عنوان</th>
                         <th scope="col">نوع</th>
+                        <th scope="col">تاریخ</th>
                         <th scope="col">ایرانی / خارجی</th>
                         <th scope="col">تعداد ثبت نام</th>
                         <th scope="col"></th>
@@ -34,6 +35,14 @@
                                 </option>
                             </select>
                         </td>
+                        <td>
+                                        <date-picker required v-model="date"  style="color:#000" locale="en,fa" format="YYYY/M/D"></date-picker>
+                                        <!-- <input 
+                                            form="form" type="text" 
+                                            placeholder="تاریخ (۰۱-۰۱-۱۳۹۸)" class="form-control" required 
+                                            v-model="date"
+                                        /> -->
+                                    </td>
                         <td scope="col">
                             <select v-model="is_persian" form="form"  class="form-control">
                                 <option value="true">
@@ -81,6 +90,16 @@
                                         </select>
                                     </td>
                                     <td>
+                                        <date-picker required v-model="date"  style="color:#000" locale="en,fa" format="YYYY/M/D"></date-picker>
+                                        <!-- <input 
+                                            form="form" type="text" 
+                                            placeholder="تاریخ (۰۱-۰۱-۱۳۹۸)" class="form-control" required 
+                                            v-model="date"
+                                        /> -->
+                                    
+                                        
+                                    </td>
+                                    <td>
                                         <select v-model="is_persian" form="form"  class="form-control">
                                             <option value="true">
                                                 ایرانی
@@ -104,6 +123,7 @@
                         <th scope="row"> {{ position(i) }}</th>
                         <td scope="col">{{ tour_registration.title }}</td>
                         <td scope="col">{{ (tour_registration.group) ? "گروهی": "فردی" }}</td>
+                        <td scope="col">{{ tour_registration.date }}</td>
                         <td scope="col">{{ (tour_registration.is_persian) ? "ایرانی": "خارجی" }}</td>
                         <td scope="col">{{ tour_registration.quantity }}</td>
                         <router-link :to="reg_link(tour_registration.pk)">
@@ -118,16 +138,25 @@
 <script>
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
+import moment from 'jalali-moment';
+ 
+import Vue from 'vue'
+
+
 export default {
     name: "TourRegistrationDetail",
     data: () => {
         return {
             title: "",
             group: "true",
+            date: "",
             is_persian: "true",
             count: 4,
         }
     },
+    components: {
+    }
+    ,
     props:{
         'tour': Number,
         'tour_registrations': Array,
@@ -138,6 +167,11 @@ export default {
         position: i => i+1,
         is_group: function () {
             if (this.group == "true")
+                return true
+            return false
+        },
+        is_daily: function () {
+            if (this.tour.is_daily == "true")
                 return true
             return false
         },
@@ -154,8 +188,9 @@ export default {
                     token: this.getToken,
                     reg_info: {
                         tour: this.tour,
-                        title: this.title, 
-                        group: this.group, 
+                        title: this.title,
+                        group: this.group,
+                        date: this.date,
                         count: this.count,
                         is_persian: this.is_persian
                     }
@@ -218,6 +253,5 @@ table {
 }
 
 </style>
-
 
 
