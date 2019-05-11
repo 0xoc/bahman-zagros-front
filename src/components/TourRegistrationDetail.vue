@@ -36,7 +36,7 @@
                             </select>
                         </td>
                         <td>
-                                        <date-picker required v-model="date"  style="color:#000" locale="en,fa" format="YYYY/M/D"></date-picker>
+                                        <date-picker required v-model="date"  style="color:#000" format="YYYY-MM-DD"></date-picker>
                                         <!-- <input 
                                             form="form" type="text" 
                                             placeholder="تاریخ (۰۱-۰۱-۱۳۹۸)" class="form-control" required 
@@ -90,7 +90,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <date-picker required v-model="date"  style="color:#000" locale="en,fa" format="YYYY/M/D"></date-picker>
+                                        <date-picker required v-model="date"  style="color:#000" format="YYYY-MM-DD"></date-picker>
                                         <!-- <input 
                                             form="form" type="text" 
                                             placeholder="تاریخ (۰۱-۰۱-۱۳۹۸)" class="form-control" required 

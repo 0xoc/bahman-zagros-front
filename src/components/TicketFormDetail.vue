@@ -60,7 +60,7 @@
                         <div class="container ">
                             <div class="row">
                                 <span class="col-12 label">آدرس:</span>
-                                <span class="col-12 data"> {{ (ticket.address == null) ? "-" : ticket.address }} </span>
+                                <span class="col-12 data"> {{ (ticket.address == "") ? "-" : ticket.address }} </span>
                             </div>
                         </div>
                     <hr/>
