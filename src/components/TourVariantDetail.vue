@@ -30,7 +30,7 @@
                 <td scope="col">{{ variant.tour_group.title }}</td>
                 <td scope="col">{{ (variant.start == null) ? "روزانه" : variant.start }}</td>
                 <td scope="col">{{ (variant.end == null) ? "روزانه" : variant.end }}</td>
-                <td scope="col">{{ variant.price }} یورو</td>
+                <td scope="col">{{ variant.price }}</td>
 
             </tr>
         </tbody>
