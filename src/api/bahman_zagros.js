@@ -108,10 +108,6 @@ let create_tour_registration = (token, reg_data) => {
     return new Promise((resolve,reject) => {
         let endpoint = `${ROOT_URL}/api/v2/tour-variants/registrations/create/`
         
-        console.log("data:");
-        console.log(reg_data)
-        console.log("end data")
-
         axios.post(endpoint, {
             'tour': reg_data.tour,
             'title': reg_data.title,
