@@ -36,7 +36,7 @@
                             </select>
                         </td>
                         <td>
-                            <Datepicker  wrapper-class="calendar" required v-model="date" format="yyyy-MM-dd"></Datepicker>
+                            <Datepicker  wrapper-class="calendar" required v-model="date" format="yyyy-M-d"></Datepicker>
                         </td>
                         <td scope="col">
                             <select v-model="is_persian" form="form"  class="form-control">
@@ -85,7 +85,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <Datepicker  wrapper-class="calendar" required v-model="date"  format="yyyy-MM-dd"></Datepicker>
+                                        <Datepicker  wrapper-class="calendar" required v-model="date"  format="yyyy-M-d"></Datepicker>
                                         <!-- <input 
                                             form="form" type="text" 
                                             placeholder="تاریخ (۰۱-۰۱-۱۳۹۸)" class="form-control" required 
@@ -178,6 +178,11 @@ export default {
         },
         make_new: function (e) {
             let c = confirm("Are you sure?")
+            
+            let year = this.date.getFullYear();
+            let month = this.date.getMonth() + 1;
+            let _date = this.date.getDate();
+            let the_date = `${year}-${month}-${_date}`
             if (c){
                 this.createTourRegistration({
                     token: this.getToken,
@@ -185,7 +190,7 @@ export default {
                         tour: this.tour,
                         title: this.title,
                         group: this.group,
-                        date: this.date,
+                        date: the_date,
                         count: this.count,
                         is_persian: this.is_persian
                     }

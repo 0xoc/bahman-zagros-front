@@ -30,6 +30,7 @@
         </tbody>
         <tbody v-else>
             <tr>
+                <td scope="col">{{ variant.title }}</td>
                 <td scope="col">{{ variant.tour_group.title }}</td>
                 <td scope="col">{{ (variant.start == null) ? "روزانه" : variant.start }}</td>
                 <td scope="col">{{ (variant.end == null) ? "روزانه" : variant.end }}</td>
@@ -37,7 +38,7 @@
 
             </tr>
             <tr>
-                <td colspan="4" class="tour_plan">
+                <td colspan="5" class="tour_plan">
                     <h4 class="plan h4">
                         برنامه تور
                     </h4>
