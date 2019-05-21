@@ -7,6 +7,7 @@ import TourRegistrationList from '../components/TourRegistrationList'
 import TourRegistrationDetail from '../components/TourRegistrationDetail'
 import TourVariantList from '../components/TourVariantList'
 import TourRegistrationTickets from '../components/TourRegistrationTickets'
+import UserPanel from '../components/UserPanel'
 Vue.use(VueRouter)
 
 const routes = [
@@ -16,6 +17,10 @@ const routes = [
         path:'/tours',
         component: Page,
         children: [
+            { path: 'panel',
+                component: UserPanel,
+                name: 'user-panel'
+            },
             {
                 path: 'tour-variants/:tour_id/list',
                 component: TourVariantList,

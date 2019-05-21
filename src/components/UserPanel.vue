@@ -1,15 +1,29 @@
 <template>
-<div class="row" id="table_row">
-    <table class="table table-striped table-light table-hover">
+    <div class="col-12" id='app'>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="history_title_holder">
+                        <h1 class="history_title">
+                            تاریخچه فعالیت
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped table-light table-hover">
         <thead>
             <tr>
-                <th v-if="!single" scope="col">#</th>
-                <th v-else scope="col">تور</th>
-                <th scope="col">عنوان</th>
-                <th scope="col">تاریخ شروع</th>
-                <th scope="col">تاریخ ‍پایان</th>
+                <th scope="col">تور</th>
+                <th scope="col">تاریخ ثبت</th>
+                <th scope="col">تعداد</th>
+                <th scope="col">نوع</th>
                 <th scope="col">قیمت</th>
-                <th v-if="!single" scope="col"></th>
+                <th scope="col">وضعیت</th>
+                <th scope="col">تعداد تایید شده</th>
+                <th scope="col">قیمت تایید شده</th>
+
             </tr>
         </thead>
         <tbody v-if="!single">
@@ -18,7 +32,6 @@
             :key="variant.pk"
             >
                 <th scope="row">{{position(i)}}</th>
-                <td scope="col">{{ variant.title }}</td>
                 <td scope="col">{{ (variant.start == null) ? "روزانه" : variant.start }}</td>
                 <td scope="col">{{ (variant.end == null) ? "روزانه" : variant.end }}</td>
                 <td scope="col">{{ variant.price }}</td>
@@ -48,46 +61,38 @@
             </tr>
         </tbody>
     </table>
-</div>    
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
-<script>
 
+<script>
 export default {
-    name: 'TourVariantDetail',
-    props: {
-        'variants': Array,
-        'variant': Object,
-        'single': Boolean
-        },
-    methods: {
-        position: i => i + 1,
-        select_link : (id) => {
-            return {
-                name: "all-tour-registrations",
-                params: {
-                    variant_id: id
-                }
-            }
-        }
-    },
+    name: 'UserPanel',
 }
 </script>
 
 <style scoped>
 @import url(../assets/css/bootstrap.css);
 
-table{
-    text-align: center;
+#app {
+    margin:20px;
+    background-color: transparent;
+    text-align: right;
+    margin-left: auto;
+    margin-right: auto;
+    direction: rtl;
 }
 
-#table_row {
-    direction: rtl;
-    border-radius: 27px;
-    overflow: hidden;
+
+.history_title_holder {
+    background-color: #454d55;
+    color:white;
+    padding: 10px;
 }
-.tour_plan {
-    text-align: right;
-    margin-right: 20px;
+.history_title {
+    font-size: 20px;
 }
 </style>

@@ -36,13 +36,8 @@
                             </select>
                         </td>
                         <td>
-                                        <date-picker required v-model="date"  style="color:#000" format="YYYY-MM-DD"></date-picker>
-                                        <!-- <input 
-                                            form="form" type="text" 
-                                            placeholder="تاریخ (۰۱-۰۱-۱۳۹۸)" class="form-control" required 
-                                            v-model="date"
-                                        /> -->
-                                    </td>
+                            <Datepicker  wrapper-class="calendar" required v-model="date" format="yyyy-MM-dd"></Datepicker>
+                        </td>
                         <td scope="col">
                             <select v-model="is_persian" form="form"  class="form-control">
                                 <option value="true">
@@ -90,7 +85,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <date-picker required v-model="date"  style="color:#000" format="YYYY-MM-DD"></date-picker>
+                                        <Datepicker  wrapper-class="calendar" required v-model="date"  format="yyyy-MM-dd"></Datepicker>
                                         <!-- <input 
                                             form="form" type="text" 
                                             placeholder="تاریخ (۰۱-۰۱-۱۳۹۸)" class="form-control" required 
@@ -138,8 +133,7 @@
 <script>
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
-import moment from 'jalali-moment';
- 
+import Datepicker from 'vuejs-datepicker';
 import Vue from 'vue'
 
 
@@ -155,6 +149,7 @@ export default {
         }
     },
     components: {
+        Datepicker,
     }
     ,
     props:{
@@ -252,6 +247,9 @@ table {
 }
 }
 
+.calendar {
+    color: black;
+}
 </style>
 
 

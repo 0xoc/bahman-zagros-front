@@ -3,7 +3,7 @@ import axios from 'axios'
 import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 Vue.component('date-picker', VuePersianDatetimePicker);
 
-const ROOT_URL = "http://bahmantours.ir";
+const ROOT_URL = "http://127.0.0.1:8000";
 
 
 let getToken = (username,password) => {
