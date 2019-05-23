@@ -3,7 +3,7 @@ import axios from 'axios'
 import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 Vue.component('date-picker', VuePersianDatetimePicker);
 
-const ROOT_URL = "http://127.0.0.1:8000";
+const ROOT_URL = "http://bahmantours.ir";
 
 
 let getToken = (username,password) => {
@@ -103,6 +103,23 @@ let create_ticket = (token, ticket) => {
     });
 }
 
+let get_profile_tour_regs = (token) => {
+    return new Promise((resolve, reject) => {
+        let endpoint = `${ROOT_URL}/api/v2/profile/tour-regs/`
+
+        axios.get(endpoint, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        }).then(response => {
+            console.log(response);
+            resolve(response.data)
+        }).catch(error => {
+            console.log(error);
+            reject(error)
+        })
+    })
+}
 
 let create_tour_registration = (token, reg_data) => {
     return new Promise((resolve,reject) => {
@@ -167,5 +184,5 @@ export default {
     get_tour_group_variants,
     create_tour_registration,
     create_ticket,
-    
+    get_profile_tour_regs,
 };

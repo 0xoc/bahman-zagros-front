@@ -5,6 +5,7 @@ const state = {
     tour_group_variants: [],
     tour_variant_registrations: [],
     tour_registration_tickets: [],
+    profile_tour_regs: [],
 }
 
 
@@ -12,7 +13,8 @@ const getters = {
     tour_groups: state => state.tour_groups,
     tour_group_variants: state => state.tour_group_variants,
     tour_variant_registrations: state => state.tour_variant_registrations,
-    tour_registration_tickets: state => state.tour_registration_tickets
+    tour_registration_tickets: state => state.tour_registration_tickets,
+    profile_tour_regs: state => state.profile_tour_regs
 }
 
 const actions = {
@@ -59,6 +61,15 @@ const actions = {
                 tour_reg_id: payload.ticket.tour_registration
             })
         }).catch(error => console.log(error));
+    },
+
+    getProfileTourRegs: (context, payload) => {
+        api.get_profile_tour_regs(payload.token).then(response => {
+            console.log("form actions");
+            console.log(response)
+            console.log("form actions");
+            context.commit("setProfileTourRegs", response)
+        }).catch(error => console.log(error))
     }
 }
 
@@ -75,6 +86,9 @@ const mutations = {
     },
     setTourRegistrationTickets: (state, trt) => {
         state.tour_registration_tickets = trt
+    },
+    setProfileTourRegs: (state, response) => {
+        state.profile_tour_regs = response
     }
 }
 

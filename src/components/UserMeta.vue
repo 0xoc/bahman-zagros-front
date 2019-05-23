@@ -8,6 +8,9 @@
                     <span @click="logout" class="io_btn">
                         خروج
                     </span>
+                    <span @click="panel" class="io_btn">
+                        فعالیت ها
+                    </span>
                 </span>
                 <span v-else @click="redirectToLogin" class="io_btn">
                     ورود
@@ -59,6 +62,9 @@ export default {
         home: function () {
             this.$router.push({name:'all-tour-groups'})   
         },
+        panel: function () {
+            this.$router.push({name:'user-panel'})   
+        },
         back: function () {
             this.$router.go(-1);
         },
@@ -80,6 +86,7 @@ export default {
     float: left;
     cursor: pointer;
     margin-left:10px;
+    box-shadow: black;
 }
 
 .top_meta_info{
