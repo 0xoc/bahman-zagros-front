@@ -60,7 +60,8 @@ const actions = {
                 token: payload.token,
                 tour_reg_id: payload.ticket.tour_registration
             })
-        }).catch(error => console.log(error));
+            alert("Ticket Created")
+        }).catch(error => alert("Ticket Not Created, please try again"));
     },
 
     getProfileTourRegs: (context, payload) => {
